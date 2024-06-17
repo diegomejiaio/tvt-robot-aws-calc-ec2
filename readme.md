@@ -3,26 +3,21 @@
 This project automates the process of calculating the cost of AWS EC2 instances using Playwright and Python.
 
 ## Prerequisites
-
 - Python 3.7 or higher
 - pip (Python package installer)
 
 ## Support
-
 ### Payment types
-
 - On-Demand
 - Convertible Reserved Instances
 - Standard Reserved Instances
 - Compute Savings Plans
 - EC2 Instance Savings Plans
-
 ### OS
-
 - Linux
 - Windows
-## Installation
 
+## Installation
 1. Install [Playwright](https://playwright.dev/python/docs/intro)
 2. Clone the repository:
    ```bash
@@ -49,18 +44,17 @@ This project automates the process of calculating the cost of AWS EC2 instances 
    ```bash
    pip install -r requirements.txt
    ```
-7. Run pytest
+7. Modify template file ```./pricing-ec2.xlsx``` and save
+8. Run pytest
    ```bash
    pytest test_ec2_aws_calc.py
    ```
-8. Review traces
+9.  Review traces
    ```bash
    playwright show-trace logs/trace.zip
    ```
 
-
 ## Process
-
 1. Import necessary libraries (asyncio, playwright, pandas).
 2. Define an asynchronous main function.
 3. Within the main function, do the following:
