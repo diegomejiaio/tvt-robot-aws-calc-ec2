@@ -26,11 +26,11 @@ This project automates the process of calculating the cost of AWS EC2 instances 
 1. Install [Playwright](https://playwright.dev/python/docs/intro)
 2. Clone the repository:
    ```bash
-   git clone {}
+   git clone https://github.com/diegomejiaio/tvt-robot-aws-calc-ec2
    ```
 3. Navigate to the project directory:
    ```bash
-   cd yourrepository
+   cd tvt-robot-aws-calc-ec2
    ```
 4. Create a virtual environment:
    ```bash
@@ -84,3 +84,4 @@ This project automates the process of calculating the cost of AWS EC2 instances 
 9.  Clic in Copy public link
 10. Print public link
 11. Finish process without closing screen
+
