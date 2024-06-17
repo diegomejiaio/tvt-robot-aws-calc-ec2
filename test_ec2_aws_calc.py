@@ -5,10 +5,10 @@ import pandas as pd
 async def main():
     async with async_playwright() as p:
         # read excel first row as header
-        await context.tracing.start(screenshots=True, snapshots=True, sources=True)
         excel = pd.read_excel('pricing-ec2.xlsx', header=0)
         browser = await p.chromium.launch(headless=False)
         context = await browser.new_context()
+        await context.tracing.start(screenshots=True, snapshots=True, sources=True)
         await context.tracing.start(screenshots=True, snapshots=True, sources=True)
         page = await context.new_page()
         await page.set_viewport_size({"width": 1600, "height": 800})
@@ -125,6 +125,8 @@ async def main():
             await page.get_by_label("Amount changed per snapshot Value").fill(str(row['snapshot_storage']))
             # next row 
             await page.get_by_role("button", name="Save and add service").click()
+            # verify if the service was added
+            assert await page.get_by_text('Successfully added Amazon EC2 estimate.').is_visible()
         await page.get_by_role("button", name="View summary").click()
 
         await page.click('text="Share"')

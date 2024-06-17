@@ -53,35 +53,41 @@ This project automates the process of calculating the cost of AWS EC2 instances 
    ```bash
    pytest test_ec2_aws_calc.py
    ```
+8. Review traces
+   ```bash
+   playwright show-trace logs/trace.zip
+   ```
 
 
-## Functional steps
+## Process
 
-1. Read pricing-ec2.xlsx as dataframe
-2. Open the browser https://calculator.aws/#/estimate
-3. Change estimation name
-4. For each ec2 instance add service
-   1. Seach EC2
-   2. Define EC2 name (texbox)
-   3. Define region (dropdown)
-   4. Define os (dropdown)
-   5. Define number of instances (textbox)
-   6. Seach instance type (textbox)
-   7. Select instance type (radiobutton)
-   8. Select payment type (radiobutton)
-   9. Select reservation term (radiobutton)
-   10. Select payment option
-   11. Clic EBS
-   12. Define storage amount in GB
-   13. Select Snapshot frencuency
-   14. Define changed per snapshot in GB
-   15. Clic in Save and add service
-   16. Step 1 for next row
-5.  Clic in View summary
-6.  Clic in Share
-7.  Clic in Agree an continue
-8.  Wait 5 seconds
-9.  Clic in Copy public link
-10. Print public link
-11. Finish process without closing screen
-
+1. Import necessary libraries (asyncio, playwright, pandas).
+2. Define an asynchronous main function.
+3. Within the main function, do the following:
+   1. Read 'pricing-ec2.xlsx' as a pandas dataframe.
+   2. Launch a new Chromium browser instance using playwright.
+   3. Start tracing with screenshots, snapshots, and sources.
+   4. Open a new page and set the viewport size.
+   5. Navigate to the AWS calculator page.
+   6. Change the estimation name.
+   7. For each row in the dataframe, add an EC2 service:
+      1. Search for EC2.
+      2. Define the EC2 instance name.
+      3. Select the region.
+      4. Select the operating system.
+      5. Select the instance type.
+      6. Select the payment type.
+      7. Select the reservation term.
+      8. Select the payment option.
+      9. Define the EBS storage amount.
+      10. Select the snapshot frequency.
+      11. Define the amount changed per snapshot.
+      12. Save and add the service.
+   8. View the summary of the estimate.
+   9. Share the estimate.
+   10. Agree and continue.
+   11. Wait for 5 seconds.
+   12. Copy the public link of the estimate.
+   13. Stop tracing and save the trace to 'logs/trace.zip'.
+   14. Pause the execution.
+4. Run the main function using asyncio.
