@@ -160,5 +160,4 @@ async def main():
         await page.pause()
         # browser.close()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())
