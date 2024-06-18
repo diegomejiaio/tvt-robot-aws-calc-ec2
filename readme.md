@@ -58,6 +58,12 @@ This project automates the process of calculating the cost of AWS EC2 instances 
    playwright show-trace logs/trace.zip
    ```
 
+## Usage
+1. Use `pricing-ec2.xlsx` as template
+2. Define you own excel
+3. Use `config.txt` to define your data source
+4. Run `pytest test_ec2_aws_calc.py`
+
 ## Process
 1. Import necessary libraries (asyncio, playwright, pandas).
 2. Define an asynchronous main function.

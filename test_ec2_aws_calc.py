@@ -1,11 +1,32 @@
 import asyncio
-from playwright.async_api import async_playwright, expect
 import pandas as pd
+from playwright.async_api import async_playwright, expect
+
+def read_config(file_path):
+    config = {}
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                if '=' in line:
+                    name, value = line.strip().split('=')
+                    config[name] = value
+    except FileNotFoundError:
+        print(f"Error: El archivo de configuración '{file_path}' no se encontró.")
+    except Exception as e:
+        print(f"Error al leer el archivo de configuración: {e}")
+    return config
 
 async def main():
     async with async_playwright() as p:
-        # read excel first row as header
-        excel = pd.read_excel('pricing-ec2.xlsx', header=0)
+        config = read_config('./config.txt')
+        try:
+            file_name = config['file_name']
+            sheet_name = config['sheet_name']
+        except KeyError as e:
+            print(f"Error: La clave {e} no se encontró en el archivo de configuración.")
+            return
+        excel = pd.read_excel(file_name, sheet_name=sheet_name , header=0)
         browser = await p.chromium.launch(headless=False)
         context = await browser.new_context()
         await context.tracing.start(screenshots=True, snapshots=True, sources=True)
@@ -139,4 +160,5 @@ async def main():
         await page.pause()
         # browser.close()
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
