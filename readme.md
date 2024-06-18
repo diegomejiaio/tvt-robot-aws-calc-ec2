@@ -57,6 +57,14 @@ This project automates the process of calculating the cost of AWS EC2 instances 
    ```bash
    playwright show-trace logs/trace.zip
    ```
+### For windows
+1. Install python
+2. Run in powershell `python -m venv env`
+3. Run `pip install -r requirements.txt`
+4. Run `pip install pytest`
+5. Run `pip install playwright`
+6. Run `pip install pandas`
+7. Run `pip install openpyxl`
 
 ## Usage
 1. Use `pricing-ec2.xlsx` as template
