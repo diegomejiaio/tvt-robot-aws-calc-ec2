@@ -2,6 +2,10 @@
 
 This project automates the process of calculating the cost of AWS EC2 instances using Playwright and Python.
 
+## Demo (spanish)
+
+[![Ver video de Loom](https://cdn.loom.com/sessions/thumbnails/1ecaba2f486740248db39099a01459d2-with-play.gif)](https://www.loom.com/share/1ecaba2f486740248db39099a01459d2)
+
 ## Prerequisites
 - Python 3.7 or higher
 - pip (Python package installer)
