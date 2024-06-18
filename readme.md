@@ -44,7 +44,7 @@ This project automates the process of calculating the cost of AWS EC2 instances 
      ```bash
      source venv/bin/activate
      ```
-6. Install the required Python packages:
+6. Install the required Python packages (below for Windows)
    ```bash
    pip install -r requirements.txt
    ```
@@ -57,14 +57,17 @@ This project automates the process of calculating the cost of AWS EC2 instances 
    ```bash
    playwright show-trace logs/trace.zip
    ```
-### For windows
+### For windows (Powershell)
 1. Install python
 2. Run in powershell `python -m venv env`
-3. Run `pip install -r requirements.txt`
-4. Run `pip install pytest`
-5. Run `pip install playwright`
-6. Run `pip install pandas`
-7. Run `pip install openpyxl`
+3. Run `pip install -r requirements.txt` #if error, don't worry, go to next step
+4. Run 
+   ```powershell
+   pip install pytest; `
+   pip install playwright; `
+   pip install pandas; `
+   pip install openpyxl
+   ```
 
 ## Usage
 1. Use `pricing-ec2.xlsx` as template
