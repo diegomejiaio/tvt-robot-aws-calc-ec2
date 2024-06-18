@@ -9,7 +9,6 @@ async def main():
         browser = await p.chromium.launch(headless=False)
         context = await browser.new_context()
         await context.tracing.start(screenshots=True, snapshots=True, sources=True)
-        await context.tracing.start(screenshots=True, snapshots=True, sources=True)
         page = await context.new_page()
         await page.set_viewport_size({"width": 1600, "height": 800})
         await page.goto('https://calculator.aws/#/estimate')

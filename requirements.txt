@@ -9,4 +9,4 @@ packaging<24.0,>=23.2
 asyncio
 pandas
 openpyxl
-dateutil
+python-dateutil
