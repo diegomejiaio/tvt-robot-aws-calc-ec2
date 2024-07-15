@@ -1,2 +1,2 @@
-file_name=pricing-ec2.xlsx
+file_name=pricing-ec2-ean.xlsx
 sheet_name=template

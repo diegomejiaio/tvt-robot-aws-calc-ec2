@@ -36,7 +36,7 @@ async def main():
         # Change estimation name
         await page.get_by_role("link", name="Edit My Estimate").click()
         await page.get_by_placeholder("Enter Name").click()
-        await page.get_by_placeholder("Enter Name").fill("My new estimation")
+        await page.get_by_placeholder("Enter Name").fill("J2C UEAN V5")
         await page.get_by_label("Save", exact=True).click()
         await page.get_by_label("Add service").first.click()
         for _, row in excel.iterrows():
@@ -52,13 +52,14 @@ async def main():
             await page.get_by_role("combobox").fill(row['region'])
             await page.get_by_text(str(row['region']), exact=True).click()
             # select operating system
+
             match row.ope_system:
-                case "Windows":
+                case "windows":
                     await page.get_by_label("Operating system").click()
+                    ## await page.get_by_title("Windows Server", exact=True).locator("span").nth(1).click()
                     await page.get_by_role("option", name="Windows Server", exact=True).click()
                     await page.get_by_label("Operating system").press("Escape")
-                case "Linux":
-                    pass
+            ## await page.pause()
             # select instance type
             await page.get_by_placeholder("Search by instance name or filter by keyword").click()
             await page.get_by_placeholder("Search by instance name or filter by keyword").fill(row['instance_family'])
@@ -140,9 +141,12 @@ async def main():
             await page.get_by_label("Snapshot Frequency").click()
             # select snapshot frequency
             await page.get_by_role("option", name=str(row['snapshot_freq']),exact=True).click()
-            await page.get_by_label("Amount changed per snapshot Value").click()
             # select amount changed per snapshot
-            await page.get_by_label("Amount changed per snapshot Value").fill(str(row['snapshot_storage']))
+            if str(row['snapshot_freq']) != "No snapshot storage":
+                await page.get_by_label("Amount changed per snapshot Value").click()
+                await page.get_by_label("Amount changed per snapshot Value").fill(str(row['snapshot_storage']))
+            else:
+                pass
             # next row 
             await page.get_by_role("button", name="Save and add service").click()
             # verify if the service was added
@@ -155,9 +159,10 @@ async def main():
         # Wait 5 seconds
         await page.wait_for_timeout(5000)
         # Copy public link
-        link = await page.get_by_role("button", name="Copy public link").click()
+        await page.get_by_role("button", name="Copy public link").click()
         await context.tracing.stop(path="logs/trace.zip")
         await page.pause()
         # browser.close()
+
 
 asyncio.run(main())
